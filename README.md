@@ -2,7 +2,7 @@
 
 Warn
 ---------
-Bot cannot started without mc.api library, after seven months, I can't find the mc.api library in PyPI and no some mentions in the Internet
+Bot cannot started without mc.api library, after seven months I can't find the mc.api library on PyPI and no some mentions in the Internet
 
 About
 ---------
