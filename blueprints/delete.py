@@ -1,15 +1,11 @@
 from vkbottle.bot import Blueprint, Message
-from repositories import ChatRepo, MessageRepo
+from database import ChatMessages
 
-bp = Blueprint("DelMsgBlueprint")
+bp = Blueprint("DeleteMessagesBlueprint")
 bp.labeler.vbml_ignore_case = True
 
 
-@bp.on.message(text=".delete messages")
-async def delete_message_command(message: Message):
-    chat = await ChatRepo.get_by_peer(message.peer_id)
-    await MessageRepo.delete(
-        await MessageRepo.get_messages(chat))
+@bp.on.message(text=".delete msgs")
+async def delete_chat_messages(message: Message):
+    ChatMessages.where(ChatMessages.peer_id == message.peer_id).delete()
     return "База сообщений очищена"
-
-

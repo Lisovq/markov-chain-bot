@@ -1,13 +1,13 @@
 from vkbottle.bot import Blueprint, Message
-from use_cases.message_generator import generate_message
+from utils import generate
 
-bp = Blueprint("MsgGenBlueprint")
+bp = Blueprint("GenerateBlueprint")
 bp.labeler.vbml_ignore_case = True
 
 
-@bp.on.chat_message(text=".gen")
+@bp.on.chat_message(text=".generate")
 async def generate_command(message: Message):
     return (
-        await generate_message(message.peer_id) or
+        generate.gen(message.peer_id) or
         "Collected text in this Chat small for generate sentence"
     )

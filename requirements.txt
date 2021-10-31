@@ -1,3 +1,3 @@
-git+https://github.com/timoniq/vkbottle/archive/master.zip
 ujson
 mc.api
+vkbottle
