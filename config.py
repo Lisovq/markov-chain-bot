@@ -1,10 +1,22 @@
-from mc.formatters import usual_syntax
+import mc
 
-USUAL_SYNTAX = usual_syntax # None or usual_syntax
-RANDOM_SEND: bool = True
+token: str = "..."
 
-MAX_LEN_MESSAGE: int = 2048
+# If callback using
+group_id: int = None
+cb_confirm_token: str = "..."
 
-CALLBACK_CONFIRMATION_TOKEN: str = "..."
-BOT_TOKEN: str = "..."
-GROUP_ID: int = None # this field if bot use callback_api
+
+class settings:
+    syntax = mc.formatters.usual_syntax
+    words_generate = mc.validators.words_count(1, 20)
+    max_len_message: int = 2048
+    random_send: bool = True
+
+
+class patterns:
+    from re import compile
+    link = compile(
+        r"http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|"
+        r"[!*(),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+"
+    )

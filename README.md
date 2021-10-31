@@ -1,16 +1,25 @@
-## Test Chat-bot
+# Fun markov-chain bot
 
-This chat-bot example generate messages with mc.api library.
-Contains Longpoll/Callback running mode.
-Constructed on [vkbottle](https://github.com/timoniq/vkbottle) framework.
+Warn
+---------
+Bot cannot started without mc.api library, after seven months I can't find the mc.api library on PyPI and no some mentions in the Internet
 
-### Used libraries
+About
+---------
+The bot was created out of nothing to do, based on the vkbottle framework with mc.api library.
+Peewee ORM and sqlite3 driver are used as message storage.
+Python3.9+
+
+Run
+---------
+Firstly fill config.py file, after:
 ```
-[*] aiohttp
-[*] ujson
-[*] mc.api
-[*] peewee
-[*] peewee-async
+python3.9 app.py # run in longpoll mode
+python3.9 callback.py # NOT CHECKED. Run in callback mode 
 ```
 
-GNU License 2021, Lisovq.
+Libraries
+----------
+* vkbottle
+* mc.api
+* peewee

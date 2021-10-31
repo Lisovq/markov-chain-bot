@@ -1,24 +1,27 @@
+import re
 from vkbottle.dispatch import BaseMiddleware
 
-from config import RANDOM_SEND, MAX_LEN_MESSAGE
-from use_cases import LINK_PATTERN, create_messages, generate_message
+from config import settings
+from config import patterns
 
-from re import findall
-import random
+from utils import randomize
+from utils import generate
 
 
 class ValidateMessageMiddleware(BaseMiddleware):
-    """ Validate message and load to db """
-
-    async def pre(self, message):
-        return message.from_id > 0 and message.peer_id > 2e9
+    async def pre(self, message) -> bool:
+        return all([
+            message.peer_id > 2e9,
+            message.from_id > 0,
+            message.text
+        ])
 
     async def post(self, message, view, responses, handlers):
-        if message.peer_id < 2e9 or responses or not message.text:
+        if responses or len(message.text) > MAX_LEN_MESSAGE:
             return
 
-        if len(message.text) < MAX_LEN_MESSAGE and not findall(LINK_PATTERN, message.text):
-            await create_messages(message.peer_id, message.text.split("\n\n"))
+        text = re.sub(patterns.link, "ССЫЛКА УДАЛЕНА", message.text)
+        generate.create(message.peer_id, text.split("\n\n"))
 
-        if RANDOM_SEND and random.randint(0, 33) == 24:
-            await message.answer(await generate_message(message.peer_id))
+        if settings.random_send and randomize():
+            await message.answer(generate_message(message.peer_id))

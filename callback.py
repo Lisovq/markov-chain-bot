@@ -1,17 +1,14 @@
-from bot_app import init_bot_app
-from config import CALLBACK_CONFIRMATION_TOKEN
-
 from aiohttp import web
-from ujson import loads
 
-bot = init_bot_app()
+from app import bot
+from config import cb_confirm_token
 
 
 async def callback_executor(request: web.Request):
-    json = await request.json(loads=loads)
+    json = await request.json()
 
     if json.get("type") == "confirmation":
-        return web.Response(body=CALLBACK_CONFIRMATION_TOKEN)
+        return web.Response(body=cb_confirm_token)
 
     await bot.router.route(json, bot.api)
     return web.Response(body="ok")
