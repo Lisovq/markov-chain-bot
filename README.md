@@ -1,9 +1,5 @@
 # Fun markov-chain bot
 
-Warn
----------
-Bot cannot started without mc.api library, after seven months I can't find the mc.api library on PyPI and no some mentions in the Internet
-
 About
 ---------
 The bot was created out of nothing to do, based on the vkbottle framework with mc.api library.
@@ -21,5 +17,5 @@ python3.9 callback.py # NOT CHECKED. Run in callback mode
 Libraries
 ----------
 * vkbottle
-* mc.api
+* mc.py
 * peewee
