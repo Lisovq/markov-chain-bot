@@ -1,6 +1,8 @@
 import mc
 
 token: str = "..."
+
+# If callback using
 group_id: int = None
 cb_confirm_token: str = "..."
 

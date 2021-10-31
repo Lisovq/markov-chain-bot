@@ -4,7 +4,7 @@ from vkbottle.bot import Bot
 from middlewares import middlewares
 import config
 
-bot = Bot(config.token)
+bot = Bot(config.token, config.group_id)
 
 for bp in load_blueprints_from_package("blueprints"):
     bp.load(bot)
